@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Song;
 use App\Models\Song;
 use Livewire\Component;
 
-class Show extends Component
+class Edit extends Component
 {
     public $song;
 
@@ -13,20 +13,20 @@ class Show extends Component
     {
         $this->song = $song;
     }
-
-    public function render(Song $song)
+    public function render()
     {
-        return view('livewire.song.show');
+        return view('livewire.song.edit');
     }
 
-    public function edit()
+    public function save()
     {
-        return redirect()->to('/song/'.$this->song->id.'/edit');
+        $this->song->save();
+        $this->dispatchBrowserEvent('notify', 'Song saved!');
     }
 
-    public function addToSet()
+    public function cancel()
     {
-        //TODO: implement
+        return redirect()->to('/song/'.$this->song->id);
     }
 
     public function transposeUp()

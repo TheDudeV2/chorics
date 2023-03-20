@@ -8,18 +8,18 @@ class Key extends Model
 {
     public $timestamps = false;
 
-    public function getMajorKey(): string
+    public function getMajorKeyString(): string
     {
         return $this->tonic;
     }
 
-    public function getMinorKey(): string
+    public function getMinorKeyString(): string
     {
         return $this->relative_minor.'m';
     }
 
-    public function getKey(): string
+    public function getString(): string
     {
-        return $this->getMajorKey().' / '.$this->getMinorKey();
+        return $this->getMajorKeyString().' / '.$this->getMinorKeyString();
     }
 }

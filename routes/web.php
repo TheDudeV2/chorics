@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Livewire\Song\Edit;
 use App\Http\Livewire\Song\Show;
 use Illuminate\Support\Facades\Route;
 
@@ -32,4 +33,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('/song/{song}', Show::class);
+    Route::get('/song/{song}/edit', Edit::class);
+    /*Route::get('/sets', YourSets::class);*/
 });

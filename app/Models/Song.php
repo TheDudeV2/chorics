@@ -38,7 +38,7 @@ class Song extends Model
     public function transposeUp()
     {
         if($this->key->id < Key::count()) {
-            ++$this->key_id;
+            $this->key_id = $this->key->id + 1;
         }
         else
         {
@@ -46,12 +46,14 @@ class Song extends Model
         }
 
         $this->save();
+        $this->refresh();
+        return $this->key->getString();
     }
 
     public function transposeDown()
     {
         if($this->key->id > 1) {
-            --$this->key_id;
+            $this->key_id = $this->key->id - 1;
         }
         else
         {
@@ -59,5 +61,7 @@ class Song extends Model
         }
 
         $this->save();
+        $this->refresh();
+        return $this->key->getString();
     }
 }
