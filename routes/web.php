@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Livewire\Song\Show;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
+
+/*Route::get('/', function () {
+    return view('welcome');
+});*/
 
 Route::middleware([
     'auth:sanctum',
@@ -25,4 +31,5 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/song/{song}', Show::class);
 });
