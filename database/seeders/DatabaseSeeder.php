@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Set;
 use App\Models\Song;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -26,5 +27,6 @@ class DatabaseSeeder extends Seeder
 
         User::factory(10)->create();
         Song::factory(100)->create();
+        Set::factory(30)->create();
     }
 }

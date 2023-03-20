@@ -34,5 +34,10 @@ Route::middleware([
     })->name('dashboard');
     Route::get('/song/{song}', Show::class);
     Route::get('/song/{song}/edit', Edit::class);
-    /*Route::get('/sets', YourSets::class);*/
+    Route::get('/songs', function () {
+        return view('songs');
+    })->name('songs');
+    Route::get('/sets', function () {
+        return view('sets');
+    })->name('sets');
 });

@@ -60,11 +60,13 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    /**
-     * Get the songs owned by the user.
-     */
     public function songs(): HasMany
     {
         return $this->hasMany(Song::class);
+    }
+
+    public function sets(): HasMany
+    {
+        return $this->hasMany(Set::class);
     }
 }
