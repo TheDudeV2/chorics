@@ -24,9 +24,8 @@ class DatabaseSeeder extends Seeder
          ]);
 
         $this->call(KeySeeder::class);
-
-        User::factory(10)->create();
-        Song::factory(100)->create();
-        Set::factory(30)->create();
+        $this->call(UserSeeder::class);
+        $this->call(SongSeeder::class);
+        $this->call(SetSeeder::class);
     }
 }
