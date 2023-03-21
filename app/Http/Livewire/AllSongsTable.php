@@ -17,4 +17,9 @@ class AllSongsTable extends Component
             'songs' => Song::with('key')->paginate(10),
         ]);
     }
+
+    public function addSong()
+    {
+        dd('IMPLEMENT ME');     //TODO implement me
+    }
 }

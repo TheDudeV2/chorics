@@ -17,4 +17,9 @@ class YourSongsTable extends Component
             'songs' => Song::with('key')->where('user_id',Auth::user()->id)->paginate(10),
         ]);
     }
+
+    public function addSong()
+    {
+        dd('IMPLEMENT ME');     //TODO implement me
+    }
 }

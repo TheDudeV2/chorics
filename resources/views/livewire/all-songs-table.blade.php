@@ -1,5 +1,5 @@
 <div>
-    <div class="bg-gray-900 mt-8 py-10">
+    <div class="bg-gray-900 rounded-xl mt-8 py-10">
         <div class="px-4 sm:px-6 lg:px-8">
             <div class="flex flex-1 justify-between">
                 <div>
@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                    <x-button.add-song>Add Song</x-button.add-song>
+                    <x-button.add-song wire:click="addSong">Add Song</x-button.add-song>
                 </div>
             </div>
             <div class="mt-8 flow-root">
