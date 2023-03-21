@@ -15,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('dashboard');
-});
+/*Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    });
+});*/
 
 /*Route::get('/', function () {
     return view('welcome');
@@ -29,6 +34,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    /*Route::get('/', function () {
+        return view('dashboard');
+    });*/
+    Route::redirect('/', '/dashboard');
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
