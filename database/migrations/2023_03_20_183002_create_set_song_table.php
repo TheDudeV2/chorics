@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('set_song', function (Blueprint $table) {
             $table->foreignId('set_id')->constrained();
             $table->foreignId('song_id')->constrained();
+
+            $table->integer('order');
         });
     }
 

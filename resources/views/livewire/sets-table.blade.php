@@ -47,24 +47,55 @@
                             </div>
                             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-400">Songs</dt>
-                                <dd class="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">
-                                    <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
-                                        @foreach($set->songs as $song)
-                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm space-x-2">
-                                                <x-icon.bars-3 class="text-gray-400"/>
-                                                <div class="flex w-0 flex-1 items-center">
-                                                    <span class="ml-2 w-0 flex-1 truncate">{{ $song->title }}</span>
-                                                    <span class="ml-2 w-0 flex-1 truncate">{{ $song->artist }}</span>
-                                                    <span class="ml-2 w-0 flex-1 truncate">{{ $song->key->getString() }}</span>
-                                                </div>
-                                                <x-button.secondary-on-dark> Remove </x-button.secondary-on-dark>
-                                                <x-button.link-primary-on-dark href="/song/{{ $song->id }}"> View </x-button.link-primary-on-dark>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </dd>
+                                @if($set->songs->count() > 0)
+                                    <dd class="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">
+                                        <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200"
+                                            wire:sortable="updateSetOrder({{ $set->id }})"
+                                        >
+                                            @foreach($set->songs as $song)
+                                                <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm space-x-2"
+                                                    wire:sortable.item="{{ $set->id }}-{{ $song->id }}"
+                                                    wire:key="set{{ $set->id }}-song-{{ $song->id }}"
+                                                >
+                                                    <x-icon.bars-3 class="text-gray-400"
+                                                                   wire:sortable.handle
+                                                    />
+                                                    <div class="flex flex-1 items-center">
+                                                        <div class="ml-2 flex-1 truncate">{{ $song->title }}</div>
+                                                        <div class="ml-2 flex-1 truncate">{{ $song->artist }}</div>
+                                                        <div class="ml-2 flex-1 truncate">{{ $song->key->getString() }}</div>
+                                                    </div>
+
+                                                    <x-button.secondary-on-dark
+                                                        wire:click="removeSong({{ $set->id }},{{ $song->id }})">
+                                                        Remove
+                                                    </x-button.secondary-on-dark>
+                                                    <x-button.link-primary-on-dark href="/song/{{ $song->id }}"> View </x-button.link-primary-on-dark>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </dd>
+                                @else
+                                    <button type="button" class="relative block w-full rounded-lg border-2 border-dashed text-gray-400 hover:text-gray-200 border-gray-400 p-12 text-center hover:border-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-offset-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="mx-auto h-12 w-12">
+                                            <path fill-rule="evenodd" d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H16.5a3.75 3.75 0 013.75 3.75v7.875c0 1.035-.84 1.875-1.875 1.875H5.625a1.875 1.875 0 01-1.875-1.875V3.375c0-1.036.84-1.875 1.875-1.875zM12.75 12a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V18a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V12z" clip-rule="evenodd" />
+                                            <path d="M14.25 5.25a5.23 5.23 0 00-1.279-3.434 9.768 9.768 0 016.963 6.963A5.23 5.23 0 0016.5 7.5h-1.875a.375.375 0 01-.375-.375V5.25z" />
+                                        </svg>
+
+                                        <span class="mt-2 block text-sm font-semibold"
+                                              wire:click="addSong({{ $set->id }})"
+                                        >
+                                            Add a Song
+                                        </span>
+                                    </button>
+
+                                @endif
                             </div>
+
                         </dl>
+                        <div class="flex justify-end mb-6 mr-6">
+                            <x-button.add-song wire:click="addSong({{ $set->id }})">Add Song</x-button.add-song>
+                        </div>
                     </div>
                 </div>
                 @endforeach

@@ -28,6 +28,7 @@ class SetSeeder extends Seeder
                 DB::table('set_song')->insert([
                     'set_id' => $setId,
                     'song_id' => array_shift($tmpSongIds),
+                    'order' => $i,
                 ]);
             }
             $tmpSongIds = $songIds;
