@@ -50,13 +50,15 @@
                                 <dd class="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0">
                                     <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
                                         @foreach($set->songs as $song)
-                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                                            <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm space-x-2">
+                                                <x-icon.bars-3 class="text-gray-400"/>
                                                 <div class="flex w-0 flex-1 items-center">
-                                                    <span class="ml-2 w-0 flex-1 truncate">{{ $song->title }} - {{ $song->artist }} - {{ $song->key->getString() }}</span>
+                                                    <span class="ml-2 w-0 flex-1 truncate">{{ $song->title }}</span>
+                                                    <span class="ml-2 w-0 flex-1 truncate">{{ $song->artist }}</span>
+                                                    <span class="ml-2 w-0 flex-1 truncate">{{ $song->key->getString() }}</span>
                                                 </div>
-                                                <div class="ml-4 flex-shrink-0">
-                                                    <a href="/song/{{ $song->id }}" class="font-medium text-indigo-600 hover:text-indigo-500">View</a>
-                                                </div>
+                                                <x-button.secondary-on-dark> Remove </x-button.secondary-on-dark>
+                                                <x-button.link-primary-on-dark href="/song/{{ $song->id }}"> View </x-button.link-primary-on-dark>
                                             </li>
                                         @endforeach
                                     </ul>
