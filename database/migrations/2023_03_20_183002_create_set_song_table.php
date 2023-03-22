@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('set_song', function (Blueprint $table) {
-            $table->foreignId('set_id')->constrained();
-            $table->foreignId('song_id')->constrained();
+            $table->foreignId('set_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('song_id')->constrained()->cascadeOnDelete();
 
             $table->integer('order');
         });

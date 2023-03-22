@@ -12,6 +12,8 @@ class SetsTable extends Component
     use WithPagination;
 
     public bool $showNewSetModal = false;
+    public bool $showDeleteSetModal = false;
+    public Set $setToDelete;
     public int $setIdToEditName;
     public int $setIdToEditDescription;
     public bool $editName = false;
@@ -64,6 +66,18 @@ class SetsTable extends Component
         $this->name = '';
         $this->description = '';
         $this->showNewSetModal = false;
+    }
+
+    public function confirmingDeleteSet(Set $set)
+    {
+        $this->showDeleteSetModal = true;
+        $this->setToDelete= $set;
+    }
+
+    public function deleteSet()
+    {
+        $this->setToDelete->delete();
+        $this->showDeleteSetModal = false;
     }
 
     public function editName(Set $set)
@@ -133,6 +147,4 @@ class SetsTable extends Component
             ->where('song_id', $songId)
             ->delete();
     }
-
-
 }
