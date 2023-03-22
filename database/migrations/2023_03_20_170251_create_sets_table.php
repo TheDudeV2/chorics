@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
 
             $table->string('name');
-            $table->string('description', 512)->nullable();
+            $table->string('description', 1000)->nullable();
         });
     }
 

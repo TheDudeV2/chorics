@@ -25,8 +25,17 @@
             @foreach($sets as $set)
                 <div wire:key="set-{{ $set->id }}" class="overflow-hidden bg-gray-800 shadow sm:rounded-lg mt-8">
                     <div class="px-4 py-5 sm:px-6 flex items-center justify-between">
-                        <h3 class="text-xl font-semibold leading-6 text-gray-200 capitalize">{{ $set->name }}</h3>
-                        <x-button.secondary-on-dark>Edit Set Name</x-button.secondary-on-dark>
+                        @unless($this->editName && $this->setIdToEditName == $set->id)
+                            <h3 class="text-xl font-semibold leading-6 text-gray-200 capitalize">{{ $set->name }}</h3>
+                            <x-button.secondary-on-dark wire:click="editName({{ $set }})">Edit Set Name</x-button.secondary-on-dark>
+                        @else
+                            <x-input.text wire:model.defer="name" class="text-xl font-semibold"/>
+                            @error('name') <div class="mt-2 text-indigo-200">{{ $message }}</div> @enderror
+                            <div>
+                                <x-button.secondary-on-dark wire:click="cancelEditName" class="mr-2">Cancel</x-button.secondary-on-dark>
+                                <x-button.primary-on-dark wire:click="saveName({{ $set->id }})">Save Set Name</x-button.primary-on-dark>
+                            </div>
+                        @endif
                     </div>
                     <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
                         <dl class="sm:divide-y sm:divide-gray-200">
@@ -37,11 +46,24 @@
                             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-400">Description</dt>
                                 <dd class="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0 flex items-center justify-between">
-                                    <div>
-                                        {{ $set->description }}
-                                    </div>
-                                    <x-button.secondary-on-dark class="ml-4 whitespace-nowrap">Edit Description</x-button.secondary-on-dark>
-
+                                    @unless($this->editDescription && $this->setIdToEditDescription == $set->id)
+                                        <div>
+                                            {{ $set->description }}
+                                        </div>
+                                        <x-button.secondary-on-dark wire:click="editDescription({{ $set }})" class="ml-4 whitespace-nowrap">Edit Description</x-button.secondary-on-dark>
+                                    @else
+                                        <div class="flex flex-col">
+                                            <div class="flex flex-row justify-between items-center">
+                                                <div class="flex-grow">
+                                                    <x-input.text wire:model.defer="description" />
+                                                </div>
+                                                <x-button.secondary-on-dark wire:click="cancelEditDescription" class="mr-2">Cancel</x-button.secondary-on-dark>
+                                                <x-button.primary-on-dark wire:click="saveDescription({{ $set->id }})">Save Set Description</x-button.primary-on-dark>
+                                            </div>
+                                            <div>
+                                                @error('description') <div class="mt-2 text-indigo-200">{{ $message }}</div> @enderror
+                                            </div>
+                                    @endif
                                 </dd>
                             </div>
                             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
