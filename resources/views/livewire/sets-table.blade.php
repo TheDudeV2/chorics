@@ -124,6 +124,7 @@
 
                         </dl>
                         <div class="flex justify-end mb-6 mr-6">
+                            <x-button.secondary-on-dark wire:click="confirmingDeleteSet({{ $set }})" class="mr-4">Delete</x-button.secondary-on-dark>
                             <x-button.add-song wire:click="addSong('{{ $set->id }}')">Add Song</x-button.add-song>
                         </div>
                     </div>
@@ -136,13 +137,14 @@
         </div>
     </div>
 
+    {{-- New Set Modal --}}
     <x-dialog-modal wire:model="showNewSetModal">
         <x-slot name="title">
             Create New Set
         </x-slot>
 
         <x-slot name="content">
-            <form class="space-y-8 divide-y divide-gray-200">
+            <form wire:submit.prevent="createSet" class="space-y-8 divide-y divide-gray-200">
                 <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
                     <div class="space-y-6 sm:space-y-5">
                         <div class="space-y-6 sm:space-y-5">
@@ -179,4 +181,25 @@
             </x-button>
         </x-slot>
     </x-dialog-modal>
+
+    {{-- Delete Set Modal --}}
+    <x-confirmation-modal wire:model="showDeleteSetModal">
+        <x-slot name="title">
+            Delete Set?
+        </x-slot>
+
+        <x-slot name="content">
+            Are you sure you want to delete the set? This action cannot be undone.
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-secondary-button wire:click="$toggle('showDeleteSetModal')" wire:loading.attr="disabled">
+                Cancel
+            </x-secondary-button>
+
+            <x-danger-button class="ml-2" wire:click="deleteSet" wire:loading.attr="disabled">
+                Delete
+            </x-danger-button>
+        </x-slot>
+    </x-confirmation-modal>
 </div>
