@@ -45,26 +45,29 @@
                             </div>
                             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-400">Description</dt>
-                                <dd class="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0 flex items-center justify-between">
-                                    @unless($this->editDescription && $this->setIdToEditDescription == $set->id)
+                                @unless($this->editDescription && $this->setIdToEditDescription == $set->id)
+                                    <dd class="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0 flex items-center justify-between">
                                         <div>
                                             {{ $set->description }}
                                         </div>
                                         <x-button.secondary-on-dark wire:click="editDescription({{ $set }})" class="ml-4 whitespace-nowrap">Edit Description</x-button.secondary-on-dark>
+                                    </dd>
                                     @else
+                                    <dd class="mt-1 text-sm text-gray-200 sm:col-span-2 sm:mt-0 items-center justify-between">
                                         <div class="flex flex-col">
-                                            <div class="flex flex-row justify-between items-center">
+                                            <div class="flex flex-row items-start">
                                                 <div class="flex-grow">
-                                                    <x-input.text wire:model.defer="description" />
+                                                    <textarea wire:model.defer="description" id="description" rows="3" class="block w-full max-w-lg rounded-md border-0 bg-gray-700 text-gray-200 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"></textarea>
                                                 </div>
-                                                <x-button.secondary-on-dark wire:click="cancelEditDescription" class="mr-2">Cancel</x-button.secondary-on-dark>
+                                                <x-button.secondary-on-dark wire:click="cancelEditDescription" class="mx-2">Cancel</x-button.secondary-on-dark>
                                                 <x-button.primary-on-dark wire:click="saveDescription({{ $set->id }})">Save Set Description</x-button.primary-on-dark>
                                             </div>
                                             <div>
                                                 @error('description') <div class="mt-2 text-indigo-200">{{ $message }}</div> @enderror
                                             </div>
+                                        </div>
+                                    </dd>
                                     @endif
-                                </dd>
                             </div>
                             <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-400">Created</dt>
