@@ -15,7 +15,7 @@ class SetSeeder extends Seeder
      */
     public function run(): void
     {
-        $sets = Set::factory(30)->create();
+        Set::factory(30)->create();
 
         $setIds = Set::all()->pluck('id')->toArray();
         $songIds = Song::all()->pluck('id')->toArray();

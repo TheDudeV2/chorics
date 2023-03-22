@@ -104,7 +104,7 @@ class SetsTable extends Component
     public function saveDescription($setId)
     {
         $this->validate([
-            'description' => 'string|nullable|max:1',
+            'description' => 'string|nullable|max:1000',
         ]);
 
         $set = Set::find($setId);

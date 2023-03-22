@@ -19,9 +19,9 @@ class SetFactory extends Factory
     {
         return [
             'user_id' => DB::table('users')->pluck('id')->random(),
-            
+
             'name' => $this->faker->words(3, true),
-            'description' => $this->faker->sentences(3, true),
+            'description' => $this->faker->paragraphs(3, true),
         ];
     }
 }
