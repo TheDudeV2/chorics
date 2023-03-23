@@ -8,6 +8,7 @@ use Livewire\Component;
 class Edit extends Component
 {
     public $song;
+    public $json;
 
     public function mount(Song $song)
     {
@@ -37,5 +38,10 @@ class Edit extends Component
     public function transposeDown()
     {
         $this->song->transposeDown();
+    }
+
+    public function debug()
+    {
+        dd($this);
     }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d11bb21fe40ea5478a3e1f98b995a74",
+    "content-hash": "b9111b29cd3b794315e56d9c969b1934",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -6243,6 +6243,75 @@
             "time": "2023-02-16T09:57:23+00:00"
         },
         {
+            "name": "thedudev2/livewire-editorjs",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TheDudeV2/livewire-editorjs.git",
+                "reference": "f13b406ab04d273c683993923b28c66b1e1b8a43"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TheDudeV2/livewire-editorjs/zipball/f13b406ab04d273c683993923b28c66b1e1b8a43",
+                "reference": "f13b406ab04d273c683993923b28c66b1e1b8a43",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^7.0|^8.0|^9.0|^10.0",
+                "livewire/livewire": "^2.3",
+                "php": "^7.3|^8.0|^8,1|^8.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0|^7.0",
+                "phpunit/phpunit": "^9.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Maxeckel\\LivewireEditorjs\\LivewireEditorjsServiceProvider"
+                    ],
+                    "aliases": {
+                        "LivewireEditorjs": "Maxeckel\\LivewireEditorjs\\LivewireEditorjsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Maxeckel\\LivewireEditorjs\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Max Eckel",
+                    "email": "contact@max-eckel.dev",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Emil Tremblay",
+                    "email": "emil@ambrgrading.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This Package aims for an easy integration of Editor.JS with Laravel Livewire (updated for Laravel 10 and PHP 8.2)",
+            "homepage": "https://github.com/thedudev2/livewire-editorjs",
+            "keywords": [
+                "livewire-editorjs",
+                "maxeckel",
+                "thedudev2"
+            ],
+            "support": {
+                "source": "https://github.com/TheDudeV2/livewire-editorjs/tree/main"
+            },
+            "time": "2023-03-23T01:42:35+00:00"
+        },
+        {
             "name": "tijsverkoyen/css-to-inline-styles",
             "version": "2.2.6",
             "source": {
@@ -8845,7 +8914,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "thedudev2/livewire-editorjs": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

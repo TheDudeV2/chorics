@@ -13,7 +13,8 @@
         "laravel/tinker": "^2.8",
         "laravel/vapor-cli": "^1.54",
         "laravel/vapor-ui": "^1.7",
-        "livewire/livewire": "^2.11"
+        "livewire/livewire": "^2.11",
+        "thedudev2/livewire-editorjs": "dev-main"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
