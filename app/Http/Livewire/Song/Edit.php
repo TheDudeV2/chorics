@@ -52,6 +52,6 @@ class Edit extends Component
 
     public function debug()
     {
-        dd($this);
+        dump($this->json);
     }
 }
