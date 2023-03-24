@@ -21,7 +21,7 @@ class Edit extends Component
 
     public function save()
     {
-        $this->song->song_data->json = $this->json;
+        $this->song->json = $this->json;
         $this->song->save();
         $this->dispatchBrowserEvent('notify', 'Song saved!');
     }
@@ -52,6 +52,6 @@ class Edit extends Component
 
     public function debug()
     {
-        dump($this->json);
+        dd($this);
     }
 }

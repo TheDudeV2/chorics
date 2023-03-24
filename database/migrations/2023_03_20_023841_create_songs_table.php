@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('artist');
 
             // TODO consider refactoring this stuff
-            $table->text('lyrics');
+            $table->text('lyrics')->nullable();
+            $table->json('json')->nullable();
         });
     }
 
