@@ -21,6 +21,7 @@ class Edit extends Component
 
     public function save()
     {
+        $this->song->song_data->json = $this->json;
         $this->song->save();
         $this->dispatchBrowserEvent('notify', 'Song saved!');
     }
@@ -38,6 +39,15 @@ class Edit extends Component
     public function transposeDown()
     {
         $this->song->transposeDown();
+    }
+
+    protected $listeners = [
+        'editorjs-save:songEditor' => 'saveEditorState',
+    ];
+
+    public function saveEditorState($editorJsonData)
+    {
+        $this->json = $editorJsonData;
     }
 
     public function debug()

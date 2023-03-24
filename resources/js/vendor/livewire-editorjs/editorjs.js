@@ -85,6 +85,10 @@ window.editorInstance = function(dataProperty, editorId, readOnly, placeholder, 
                         this.$wire.set(dataProperty, outputData);
 
                         this.$wire.call('save');
+/*
+                        this.$wire.emitUp('saveEditorState');
+*/
+                        console.log('trying to save')
                     }).catch((error) => {
                         console.log('Saving failed: ', error)
                     });

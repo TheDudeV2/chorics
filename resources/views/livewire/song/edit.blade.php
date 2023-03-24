@@ -27,10 +27,8 @@
 
     <div class="flex flex-col justify-center m-6 p-6 rounded-xl bg-gray-700">
         @livewire('editorjs', [
-            'editorId' => "myEditor",
+            'editorId' => "songEditor",
             'value' => $json,
-            'uploadDisk' => 'public',
-            'downloadDisk' => 'public',
             'class' => '...',
             'style' => '...',
             'readOnly' => false,
