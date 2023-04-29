@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Editor\Data;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Song extends Model
 {
@@ -18,9 +20,11 @@ class Song extends Model
         'key_id',
     ];
 
-    /**
-     * Get the user that owns the song.
-     */
+    protected $with = [
+        'key',
+        'data',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -36,12 +40,17 @@ class Song extends Model
         return $this->belongsToMany(Set::class);
     }
 
+    public function editor_data(): HasOne
+    {
+        return $this->hasOne(Data::class, 'song_id');
+    }
+
     public function getOwnerName()
     {
         return $this->user->name;
     }
 
-    public function transposeUp()
+    public function transposeUp(): string
     {
         if($this->key->id < Key::count()) {
             $this->key_id = $this->key->id + 1;
@@ -56,7 +65,7 @@ class Song extends Model
         return $this->key->getString();
     }
 
-    public function transposeDown()
+    public function transposeDown(): string
     {
         if($this->key->id > 1) {
             $this->key_id = $this->key->id - 1;

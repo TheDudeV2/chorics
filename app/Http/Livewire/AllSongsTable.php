@@ -14,7 +14,7 @@ class AllSongsTable extends Component
     public function render()
     {
         return view('livewire.all-songs-table', [
-            'songs' => Song::with('key')->paginate(10),
+            'songs' => Song::paginate(10),
         ]);
     }
 

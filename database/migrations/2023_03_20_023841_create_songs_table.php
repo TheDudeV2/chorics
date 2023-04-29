@@ -20,9 +20,10 @@ return new class extends Migration
             $table->string('title');
             $table->string('artist');
 
+/*            $table->foreignId('editor_data_id')->constrained('editor_data')->onDelete('cascade');*/
+
             // TODO consider refactoring this stuff
             $table->text('lyrics')->nullable();
-            $table->json('json')->nullable();
         });
     }
 
